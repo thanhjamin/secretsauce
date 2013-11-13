@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Decoder</title>
+  </head>
+  <body>
+    <h1>Message Decoder</h1>
+
+    <button onclick="decoder.protect()">Reveal</button>
+
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+
+    <script>
+      var decoder = {
+
+        getMessage: function() {
+          this.message = document.URL.slice(document.URL.indexOf("?")+1);
+          console.log("messaged sliced and grabbed");
+        },
+
+        getPassword: function() {
+          this.password = prompt("Give me your password human");
+          console.log("password");
+        },
+
+        setUrl: function() {
+          console.log("set url");
+          this.pass = decoder.decrypt();
+        },
+
+        replaceMessageWithUrl: function () {
+          alert(this.pass);
+        },
+
+        decrypt: function() {
+          cypher = CryptoJS.AES.decrypt(this.message, this.password).toString(CryptoJS.enc.Utf8)
+          return cypher
+        },
+
+        protect: function() {
+          this.getMessage()
+          this.getPassword()
+          this.setUrl()
+          this.replaceMessageWithUrl()
+        }
+      }
+    </script>
+  </body>
+</html>
