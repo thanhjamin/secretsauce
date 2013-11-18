@@ -1,20 +1,4 @@
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Message Encoder</h1>
-    <p>This simple page lets you securely encrypt a message with a password. Your message will not leave your computer, and will not be sent over the Internet.</p>
-    <p>Once it's encoded, you'll be able to share your message with anyone else who has the password.</p>
-    <textarea id="message" rows="6" cols="60"></textarea>
-    <br>
-    <button onclick="encoder.protect()" id="encrypt">Lock Down</button>
-
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
-
-    <script>
-      var encoder = {
+var encoder = {
         setMessage: function() {
           console.log("messaged stored");
           this.message = document.getElementById('message').value
@@ -32,7 +16,7 @@
         },
         replaceMessageWithUrl: function () {
           console.log("encrypt url");
-          document.getElementById('message').value = document.URL.replace("secretsauceapp.html", "decode.html").toString() + "?" + this.pass;
+          document.getElementById('message').value = document.URL.replace("encoder.html", "decode.html").toString() + "?" + this.pass;
 
         },
         encrypt: function() {
@@ -48,7 +32,4 @@
           this.replaceMessageWithUrl()
         }
       }
-
-    </script>
-  </body>
-</html>
+document.getElementById('encrypt').onclick = function() { encoder.protect(); };
